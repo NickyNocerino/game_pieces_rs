@@ -66,4 +66,30 @@ impl Card {
         }
         Self{rank:r, suit:s}
     }
+    
+    pub fn get_suit_index(&self) -> usize {
+        match self.suit {
+            Suit::Spades => return 0,
+            Suit::Clubs => return 1,
+            Suit::Diamonds => return 2,
+            Suit::Hearts => return 3,
+        }
+    }
+    pub fn get_rank_index(&self) -> usize {
+        match self.rank {
+            Rank::Ace => return 0,
+            Rank::Two => return 1,
+            Rank::Three => return 2,
+            Rank::Four => return 3,
+            Rank::Five => return 4,
+            Rank::Six => return 5,
+            Rank::Seven => return 6,
+            Rank::Eight => return 7,
+            Rank::Nine => return 8,
+            Rank::Ten => return 9,
+            Rank::Jack => return 10,
+            Rank::Queen => return 11,
+            Rank::King => return 12,
+        }
+    }
 }
