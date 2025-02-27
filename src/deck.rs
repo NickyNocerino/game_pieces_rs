@@ -47,7 +47,7 @@ impl Deck {
 
     pub fn draw(&self) -> (Card, Self) {
         //Draws randomly, does not preserve order for speed
-        if self.cards.len() == 0 {
+        if self.count == 0 {
             panic!("Drawing from an empty deck")
         }
         let mut out_deck = self.cards.clone();
@@ -57,7 +57,7 @@ impl Deck {
 
     pub fn draw_rank(&self, r:Rank) -> (Card, Self) {
         //Draws first matching found, does not preserve order for speed
-        if self.cards.len() == 0 {
+        if self.count == 0 {
             panic!("Drawing from an empty deck")
         }
         let mut out_deck = self.cards.clone();
@@ -72,7 +72,7 @@ impl Deck {
 
     pub fn draw_suit(&self, s:Suit) -> (Card, Self) {
         //Draws first matching found, does not preserve order for speed
-        if self.cards.len() == 0 {
+        if self.count == 0 {
             panic!("Drawing from an empty deck")
         }
         let mut out_deck = self.cards.clone();
@@ -87,7 +87,7 @@ impl Deck {
 
     pub fn draw_blackjack_value_index(&self, n:usize) -> (Card, Self) {
         //Draws first matching found, does not preserve order for speed
-        if self.cards.len() == 0 {
+        if self.count == 0 {
             panic!("Drawing from an empty deck")
         }
         let mut out_deck = self.cards.clone();
@@ -102,7 +102,7 @@ impl Deck {
 
     pub fn draw_probs_by_rank(&self) -> [f64;13]
     {
-        if self.cards.len() == 0 {
+        if self.count == 0 {
             panic!("Drawing odds from an empty deck")
         }
         let mut out = [0.0f64;13];
@@ -114,7 +114,7 @@ impl Deck {
 
     pub fn draw_probs_by_suit(&self) -> [f64;4]
     {
-        if self.cards.len() == 0 {
+        if self.count == 0 {
             panic!("Drawing odds from an empty deck")
         }
         let mut out = [0.0f64;4];
@@ -126,7 +126,7 @@ impl Deck {
 
     pub fn draw_probs_by_blackjack_value(&self) -> [f64;10]
     {
-        if self.cards.len() == 0 {
+        if self.count == 0 {
             panic!("Drawing odds from an empty deck")
         }
         let mut out = [0.0f64;10];
