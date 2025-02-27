@@ -1,6 +1,6 @@
 use rand::Rng;
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum Rank{
     Ace,
     Two,
@@ -17,7 +17,7 @@ pub enum Rank{
     King,
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum Suit{
     Spades,
     Clubs,
@@ -38,7 +38,7 @@ impl Card {
 
     pub fn new_random() -> Self {
         let rank_num:usize = rand::thread_rng().gen_range(1..14);
-        let mut r:Rank = Rank::Ace;
+        let r:Rank;
         match rank_num {
             1 => r = Rank::Ace,
             2 => r = Rank::Two,
@@ -56,7 +56,7 @@ impl Card {
             0_usize | 14_usize.. => panic!("random number out of bounds"),
         }
         let suit_num:usize = rand::thread_rng().gen_range(1..5);
-        let mut s:Suit = Suit::Spades;
+        let s:Suit;
         match suit_num {
             1 => s = Suit::Spades,
             2 => s = Suit::Clubs,
@@ -90,6 +90,23 @@ impl Card {
             Rank::Jack => return 10,
             Rank::Queen => return 11,
             Rank::King => return 12,
+        }
+    }
+    pub fn get_blackjack_value_index(&self) -> usize {
+        match self.rank {
+            Rank::Ace => return 0,
+            Rank::Two => return 1,
+            Rank::Three => return 2,
+            Rank::Four => return 3,
+            Rank::Five => return 4,
+            Rank::Six => return 5,
+            Rank::Seven => return 6,
+            Rank::Eight => return 7,
+            Rank::Nine => return 8,
+            Rank::Ten => return 9,
+            Rank::Jack => return 9,
+            Rank::Queen => return 9,
+            Rank::King => return 9,
         }
     }
 }
