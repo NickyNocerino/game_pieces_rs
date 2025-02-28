@@ -52,7 +52,23 @@ impl Deck {
         }
         let mut out_deck = self.cards.clone();
         let drawn_card = out_deck.swap_remove(rand::thread_rng().gen_range(0..out_deck.len()));
-        (drawn_card, Self::from_vec(&out_deck))
+        let mut count_by_rank = [0usize;13];
+        count_by_rank.clone_from_slice(&self.count_by_rank);
+        count_by_rank[drawn_card.get_rank_index()] -= 1;
+        let mut count_by_suit = [0usize;4];
+        count_by_suit.clone_from_slice(&self.count_by_suit);
+        count_by_suit[drawn_card.get_suit_index()] -= 1;
+        let mut count_by_blackjack_value = [0usize;10];
+        count_by_blackjack_value.clone_from_slice(&self.count_by_blackjack_value);
+        count_by_blackjack_value[drawn_card.get_blackjack_value_index()] -= 1;
+        let new_deck = Self{
+            count:self.count-1,
+            count_by_rank:count_by_rank,
+            count_by_suit:count_by_suit,
+            count_by_blackjack_value:count_by_blackjack_value,
+            cards:out_deck
+        };
+        (drawn_card, new_deck)
     }
 
     pub fn draw_rank(&self, r:Rank) -> (Card, Self) {
@@ -79,7 +95,23 @@ impl Deck {
         for (i, card) in (self.cards.clone()).iter().enumerate(){
             if card.suit == s {
                 let drawn_card = out_deck.swap_remove(i);
-                return (drawn_card, Self::from_vec(&out_deck))
+                let mut count_by_rank = [0usize;13];
+                count_by_rank.clone_from_slice(&self.count_by_rank);
+                count_by_rank[drawn_card.get_rank_index()] -= 1;
+                let mut count_by_suit = [0usize;4];
+                count_by_suit.clone_from_slice(&self.count_by_suit);
+                count_by_suit[drawn_card.get_suit_index()] -= 1;
+                let mut count_by_blackjack_value = [0usize;10];
+                count_by_blackjack_value.clone_from_slice(&self.count_by_blackjack_value);
+                count_by_blackjack_value[drawn_card.get_blackjack_value_index()] -= 1;
+                let new_deck = Self{
+                    count:self.count-1,
+                    count_by_rank:count_by_rank,
+                    count_by_suit:count_by_suit,
+                    count_by_blackjack_value:count_by_blackjack_value,
+                    cards:out_deck
+                };
+                return (drawn_card, new_deck)
             }
         }
         panic!("drawning card of suit not in deck")
@@ -94,7 +126,23 @@ impl Deck {
         for (i, card) in (self.cards.clone()).iter().enumerate(){
             if card.get_blackjack_value_index() == n {
                 let drawn_card = out_deck.swap_remove(i);
-                return (drawn_card, Self::from_vec(&out_deck))
+                let mut count_by_rank = [0usize;13];
+                count_by_rank.clone_from_slice(&self.count_by_rank);
+                count_by_rank[drawn_card.get_rank_index()] -= 1;
+                let mut count_by_suit = [0usize;4];
+                count_by_suit.clone_from_slice(&self.count_by_suit);
+                count_by_suit[drawn_card.get_suit_index()] -= 1;
+                let mut count_by_blackjack_value = [0usize;10];
+                count_by_blackjack_value.clone_from_slice(&self.count_by_blackjack_value);
+                count_by_blackjack_value[drawn_card.get_blackjack_value_index()] -= 1;
+                let new_deck = Self{
+                    count:self.count-1,
+                    count_by_rank:count_by_rank,
+                    count_by_suit:count_by_suit,
+                    count_by_blackjack_value:count_by_blackjack_value,
+                    cards:out_deck
+                };
+                return (drawn_card, new_deck)
             }
         }
         panic!("drawning card of blackjack value not in deck")
