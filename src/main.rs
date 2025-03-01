@@ -1,5 +1,6 @@
 use game_pieces_rs::card::{Suit, Rank, Card};
 use game_pieces_rs::deck::Deck;
+use game_pieces_rs::blackjack_deck::BlackjackDeck;
 
 fn main() {
     let mut rand_card = Card::new_random();
