@@ -41,6 +41,22 @@ impl Deck {
         }
     }
 
+    pub fn clone(&self) -> Self {
+        let mut count_by_rank = [0usize;13];
+        count_by_rank.clone_from_slice(&self.count_by_rank);
+        let mut count_by_suit = [0usize;4];
+        count_by_suit.clone_from_slice(&self.count_by_suit);
+        let mut count_by_blackjack_value = [0usize;10];
+        count_by_blackjack_value.clone_from_slice(&self.count_by_blackjack_value);
+        Self{
+            count: self.count.clone(),
+            count_by_rank:count_by_rank,
+            count_by_suit:count_by_suit,
+            count_by_blackjack_value:count_by_blackjack_value,
+            cards: self.cards.clone(),
+        }
+    }
+
     pub fn to_vec(&self) -> Vec<Card> {
         self.cards.clone()
     }
